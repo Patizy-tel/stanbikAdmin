@@ -44,3 +44,11 @@ app.use("/api/deposit", require('./routes/api/deposit'));
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
+////////////////////////////////////
+
+
+//the apis
+// http://localhost:5000/api/payments  ::: post
+// http://localhost:5000/api/deposit  ::: post
+/// go muma  models to confirm ma datatypes and names
+////////////////////////////////////////////////////////////////
