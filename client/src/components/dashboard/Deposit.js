@@ -7,6 +7,8 @@ class Deposit extends Component {
 
   constructor(){
 
+    super()
+
     this.state ={
     deposit:[]
     }

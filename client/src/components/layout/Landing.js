@@ -22,7 +22,7 @@ class Landing extends Component {
                 letterSpacing: "1.5px",
                 background: "linear-gradient(-90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 31%, rgba(0,212,255,1) 100%)"
               }}
-              className="btn btn-large btn-flat waves-effect white black-text"
+              className="btn btn-large btn-flat waves-effect white white-text"
             >
               Log In
             </Link>
