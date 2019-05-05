@@ -1,13 +1,24 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { logoutUser } from "../../actions/authActions";
-import NavBarDash from './NavBarDash'
+import NavBarDash from './NavBarDash' ;
+import axios from 'axios'
 
 class Dashboard extends Component {
+    constructor(){
+      this.state= {
+        dashboard:[]
+      }
+    }
+    componentDidMount() {
+      axios.get(`http://localhost:5000/api/payments/all `)
+        .then(res => {
+          const dashboard = res.data;
+          this.setState({ dashboard });
+        })
+    }
+  
 
   render() {
-    const { user } = this.props.auth;
+
 
     return (
       <div>
@@ -27,38 +38,19 @@ class Dashboard extends Component {
         </thead>
 
         <tbody>
+
+        { this.state.dashboard.map(x => 
           <tr>
-            <td>001</td>
-            <td>Tatenda</td>
-            <td>Tello</td>
-            <td>$0.87</td>
-            <td>Lunch</td>
-            <td>01/01/01</td>
-          </tr>
-          <tr>
-          <td>001</td>
-          <td>Tatenda</td>
-          <td>Tello</td>
-          <td>$0.87</td>
-          <td>Lunch</td>
-          <td>01/01/01</td>
-          </tr>
-          <tr>
-          <td>001</td>
-          <td>Tatenda</td>
-          <td>Tello</td>
-          <td>$0.87</td>
-          <td>Lunch</td>
-          <td>01/01/01</td>
-          </tr>
-          <tr>
-          <td>001</td>
-          <td>Tatenda</td>
-          <td>Tello</td>
-          <td>$0.87</td>
-          <td>Lunch</td>
-          <td>01/01/01</td>
-          </tr>
+        
+          <td>{x._id}</td>
+          <td>{x.TO}</td>
+          <td>{x.From}</td>
+          <td>{x.Amount}</td>
+          <td>{x.Comment}</td>
+          <td>{x.date}</td>
+        </tr>
+          
+          )}
           <tr>
           <td>001</td>
           <td>Tatenda</td>
@@ -213,16 +205,5 @@ class Dashboard extends Component {
   }
 }
 
-Dashboard.propTypes = {
-  logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
-};
 
-const mapStateToProps = state => ({
-  auth: state.auth
-});
-
-export default connect(
-  mapStateToProps,
-  { logoutUser }
-)(Dashboard);
+export default Dashboard
